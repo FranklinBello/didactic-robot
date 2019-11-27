@@ -11,20 +11,20 @@ def home():
 def about():
     return render_template('public/about.html')
 
-@app.route('/sign-up', methods=['GET', 'POST'])
-def sign_up():
+@app.route('/register', methods=['GET', 'POST'])
+def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        return redirect(url_for('log_in'))
-    return render_template('public/sign-up.html', title='Sign Up', form=form)
+        return redirect(url_for('login'))
+    return render_template('public/register.html', title='Register', form=form)
 
-@app.route('/log-in', methods=['GET', 'POST'])
-def log_in():
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     form = LoginForm()
     if form.validate_on_submit():
         if form.email.data == 'admin@cygnus.com' and form.password.data == 'password':
             return redirect(url_for('dashboard'))
-    return render_template('public/log-in.html', title='Log In', form=form)
+    return render_template('public/login.html', title='Login', form=form)
 
 @app.route('/dashboard')
 def dashboard():
