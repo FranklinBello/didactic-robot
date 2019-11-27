@@ -38,7 +38,8 @@ There are only two genders: Male and Female
 1. Home
 2. Login
 3. Register
-4. 404 - Not Found
+4. Courses
+5. 404 - Not Found
 
 ## CRUD
 
