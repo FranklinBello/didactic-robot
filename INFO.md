@@ -31,7 +31,7 @@ There are only two genders: Male and Female
 
 ## Guidelines
 
-1. Do not push to the *master* branch.
+1. Do not push to the *master* branch. Push instead to the 'develop' branch
 
 ## Paths
 
