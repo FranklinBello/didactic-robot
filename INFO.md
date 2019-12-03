@@ -41,8 +41,9 @@ There are only two genders: Male and Female
 3. Register
 4. CourseCatalog
 5. 404 - Not Found
-6. Dashboard
-7. Profile
+6. Profile
+7. About
+
 
 ## CRUD
 

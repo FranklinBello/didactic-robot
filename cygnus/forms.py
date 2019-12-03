@@ -17,7 +17,7 @@ class LoginForm(FlaskForm):
     remember = BooleanField ('Remember Me')
     submit   = SubmitField  ('Sign In')
 
-class UserProfile(FlaskForm):
+class UserProfileForm(FlaskForm):
     # name = StringField('Name')
     # last_name = StringField('Last Name')
     # bio = TextAreaField('Bio')
