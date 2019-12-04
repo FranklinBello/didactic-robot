@@ -15,7 +15,7 @@ class LoginForm(FlaskForm):
     remember = BooleanField ('Remember Me')
     submit   = SubmitField  ('Sign In')
 
-class UserProfile(FlaskForm):
+class UserProfileForm(FlaskForm):
     pass
 
 class PostForm(FlaskForm):
