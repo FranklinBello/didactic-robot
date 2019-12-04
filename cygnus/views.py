@@ -7,17 +7,6 @@ from cygnus.forms import RegistrationForm, LoginForm
 def home():
     return render_template('public/home.html')
 
-@app.route('/about')
-def about():
-    return render_template('public/about.html')
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        return redirect(url_for('login'))
-    return render_template('public/register.html', title='Register', form=form)
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -26,6 +15,34 @@ def login():
             return redirect(url_for('dashboard'))
     return render_template('public/login.html', title='Login', form=form)
 
-@app.route('/dashboard')
-def dashboard():
-    return 'Dashboard'
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        return redirect(url_for('login'))
+    return render_template('public/register.html', title='Register', form=form)
+
+@app.route('/coursecatalog', methods=['GET'])
+def courseCatalog():
+    return render_template('public/coursecatalog.html', title='Course Catalog')
+
+@app.route('/404')
+def 404():
+    return render_template('public/404.html', title='Not Found')
+
+@app.route('/profile', methods=['GET'])
+def Profile():
+    return render_template('public/Profile.html', title='Profile', form=form)
+
+@app.route('/about')
+def about():
+    return render_template('public/about.html')
+
+
+
+
+
+
+
+
+
