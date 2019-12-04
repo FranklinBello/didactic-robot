@@ -25,20 +25,24 @@ Post: PostId, Title, Description, Subject, User, Date_Posted, Status (Completed/
 
 ##### Questions and Assumptions
 
-Is it possible for an user be both tutor and student at the same time? No, in that case the tutor should create an student account.
+Q: *Is it possible for an user be both tutor and student at the same time?*
+A: No, the user must create two separate accounts.
 
 There are only two genders: Male and Female
 
 ## Guidelines
 
-1. Do not push to the *master* branch. Push instead to the 'develop' branch
+1. Do not push to the *master* branch. Push instead to the *develop* branch.
 
 ## Paths
 
 1. Home
 2. Login
 3. Register
-4. 404 - Not Found
+4. CourseCatalog
+5. 404 - Not Found
+6. Dashboard
+7. Profile
 
 ## CRUD
 
