@@ -17,6 +17,14 @@ class LoginForm(FlaskForm):
     remember = BooleanField ('Remember Me')
     submit   = SubmitField  ('Sign In')
 
+class PostForm(FlaskForm):
+    title   = StringField('Title', validators=[DataRequired()])
+    body    = TextAreaField('Body', validators=[DataRequired()])
+
+class SearchForm(FlaskForm):
+    search  = StringField('SearchBar')
+    submit  = SubmitField('SearchBtn')
+
 class UserProfileForm(FlaskForm):
     # name = StringField('Name')
     # last_name = StringField('Last Name')
@@ -31,9 +39,6 @@ class UserProfileForm(FlaskForm):
     # image
     pass
 
-class PostForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    body = TextAreaField('Body', validators=[DataRequired()])
 
 # Add recaptcha field to avoid bots
 # If you are a student then submit
