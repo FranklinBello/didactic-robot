@@ -6,7 +6,7 @@
 2. In the folder containing the project, create an environment called ```env```. 
     For macOs and Linux:
     ```
-    $ py -m venv env
+    $ python -m venv env
     ```
     For Windows:
     ```
