@@ -27,7 +27,7 @@ def courseCatalog():
     return render_template('public/coursecatalog.html', title='Course Catalog')
 
 @app.route('/404')
-def 404():
+def Error404():
     return render_template('public/404.html', title='Not Found')
 
 @app.route('/profile', methods=['GET'])
