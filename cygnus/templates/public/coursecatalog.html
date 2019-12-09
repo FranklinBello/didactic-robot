@@ -1,37 +1,56 @@
-{% extends "public/templates/base.html" %}
+{% extends "public/templates/general.html" %}
 
 {% block title %}
-    Cygnus - {{ title }}
 {% endblock %}
 
+
+
 {% block main %}
-    <h1>Sign Up</h1>
 
-    <div>
-        <form action="" method="POST">
-            {{ form.hidden_tag() }}
-            <fieldset>
-                <div>
-                    {{ form.username.label }}
-                    {{ form.username}}
-                </div>
-                <div>
-                    {{ form.email.label }}
-                    {{ form.email }}
-                </div>
-                <div>
-                    {{ form.password.label }}
-                    {{ form.password }}
-                </div>
-                <div>
-                    {{ form.confirm.label }}
-                    {{ form.confirm }}
-                </div>
-            </fieldset>
-            <div>
-                {{ form.submit }}
-            </div>
-        </form>
-    </div>
+<div class="card" style="width: 20%; display:inline-block; vertical-align:top;">
+<img src="https://images.unsplash.com/photo-1534744971734-e1628d37ea01?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80" class="card-img-top" alt="https://unsplash.com/photos/OgvqXGL7XO4">
+<div class="card-body">
+    <h5 class="card-title">Physics</h5>
+    <p class="card-text">branch of science concerned with the nature and properties of matter and energy</p>
+    <a href="#" class="btn btn-primary">Find Mentor</a>
+</div>
+</div>
 
+<div class="card" style="width: 20%; display:inline-block; vertical-align:top;">
+<img src="http://www.aldelcy.com/img/headshot.png" class="card-img-top" alt="...">
+<div class="card-body">
+    <h5 class="card-title">Computer Science</h5>
+    <p class="card-text">the study of processes that interact with data and that can be represented as data in the form of programs.</p>
+    <a href="#" class="btn btn-primary">Find Mentor</a>
+</div>
+</div>
+
+<br><br><br><br><br><br>
+
+<div class="card" style="width: 20%; display:inline-block; vertical-align:top;">
+<img src="https://images.unsplash.com/photo-1528082992860-d520150d6f6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" class="card-img-top" alt="...">
+<div class="card-body">
+    <h5 class="card-title">Calculus</h5>
+    <p class="card-text">branch of mathematics that deals with the finding and properties of derivatives and integrals of functions, by methods originally based on the summation of infinitesimal differences.</p>
+    <a href="#" class="btn btn-primary">Find Mentor</a>
+</div>
+</div>
+
+<div class="card" style="width: 20%; display:inline-block; vertical-align:top;">
+<img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" class="card-img-top" alt="...">
+<div class="card-body">
+    <h5 class="card-title">Music</h5>
+    <p class="card-text">art form and cultural activity whose medium is sound organized in time.</p>
+    <a href="#" class="btn btn-primary">Find Mentor</a>
+</div>
+</div>
+
+<div class="card" style="width: 20%; display:inline-block; vertical-align:top;">
+<img src="https://images.unsplash.com/photo-1538855065431-f0c8841ddfed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" class="card-img-top" alt="...">
+<div class="card-body">
+    <h5 class="card-title">Natural History</h5>
+    <p class="card-text">involving organisms, including animals, fungi and plants, in their natural environment, leaning more towards observational than experimental methods of study.</p>
+    <a href="#" class="btn btn-primary">Find mentor</a>
+</div>
+</div>
 {% endblock %}

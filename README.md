@@ -3,6 +3,7 @@
 ## Installation
 
 1. Clone the project from the *development* branch into your file system.
+
     a.
     ```
     git clone URL/of/the/repository.git
@@ -68,5 +69,5 @@
 - Explore Flask: [Link](https://exploreflask.com/en/latest/preface.html)
 
 ##### Videos
-Corey Schaffer: [Link](https://www.youtube.com/watch?v=MwZwr5Tvyxo&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH)
-Julian Nash: [Link](https://www.youtube.com/watch?v=BUmUV8YOzgM&list=PLF2JzgCW6-YY_TZCmBrbOpgx5pSNBD0_L)
+- Corey Schaffer: [Link](https://www.youtube.com/watch?v=MwZwr5Tvyxo&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH)
+- Julian Nash: [Link](https://www.youtube.com/watch?v=BUmUV8YOzgM&list=PLF2JzgCW6-YY_TZCmBrbOpgx5pSNBD0_L)
