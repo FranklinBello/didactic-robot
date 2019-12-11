@@ -2,36 +2,76 @@
 
 {% block main %}
 
-<div class="container">
-	<div class="row">
-		<div class="col-lg-5 mx-auto">
-			<div class="card my-5">
-				<h4 class="card-header text-center">Create your account</h4>
-				<div class="card-body">
-					<div class="px-5 py-2">
-						<form method="POST" autocomplete="off">
-							{{ form.hidden_tag() }}
-							<div class="my-3">
+<div class="row">
+	<div class="col-lg-5 mx-auto">
+		<div class="card mt-2">
+			<h4 class="card-header text-center">Create your account</h4>
+			<div class="card-body">
+				<div class="px-5 py-2">
+					<form method="POST" autocomplete="off">
+						{{ form.hidden_tag() }}
+
+						<div class="my-3">
+							{% if form.username.errors %}
+							{{ form.username(class="form-control is-invalid", placeholder="Username") }}
+							<div class="invalid-feedback">
+								{% for error in form.username.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+							{% else %}
 								{{ form.username(class="form-control", placeholder="Username") }}
+							{% endif %}
+						</div>
+
+						<div class="my-3">
+							{% if form.email.errors %}
+							{{ form.email(class="form-control is-invalid", placeholder="Email") }}
+							<div class="invalid-feedback">
+								{% for error in form.email.errors %}
+								<span>{{ error }}</span>
+								{% endfor %}
 							</div>
-							<div class="my-3">
+							{% else %}
 								{{ form.email(class="form-control", placeholder="Email") }}
+							{% endif %}
+						</div>
+
+						<div class="my-3">
+							{% if form.password.errors %}
+							{{ form.password(class="form-control is-invalid", placeholder="Password") }}
+							<div class="invalid-feedback">
+								{% for error in form.password.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
 							</div>
-							<div class="my-3">
+							{% else %}
 								{{ form.password(class="form-control", placeholder="Password") }}
+							{% endif %}
+						</div>
+
+						<div class="my-3">
+							{% if form.confirm.errors %}
+							{{ form.confirm(class="form-control is-invalid", placeholder="Confirm Password") }}
+							<div class="invalid-feedback">
+								{% for error in form.confirm.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
 							</div>
-							<div class="my-3">
+							{% else %}
 								{{ form.confirm(class="form-control", placeholder="Confirm Password") }}
-							</div>
-							<div class="my-2">
-								{{ form.submit(class="btn btn-dark") }}
-							</div>
-						</form>
-					</div>
+							{% endif %}
+						</div>
+
+						<div class="my-2">
+							{{ form.submit(class="btn btn-dark") }}
+						</div>
+						
+					</form>
 				</div>
-				<div class="card-footer text-center">
-					<small class="text-muted">Already have an account? <a href="\login">Sign in</a></small>
-				</div>
+			</div>
+			<div class="card-footer text-center">
+				<small class="text-muted">Already have an account? <a href="\login">Sign in</a></small>
 			</div>
 		</div>
 	</div>
