@@ -1,0 +1,171 @@
+{% extends "public/templates/general.html" %}
+
+{% block main %}
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-3 ">
+      <div class="list-group ">
+        <a href="{{ url_for('profile') }}" class="list-group-item list-group-item-action">Dashboard</a>
+        {% if current_user.is_authenticated %}
+        <a href="#" class="list-group-item list-group-item-action active">Edit Profile</a>
+        {% endif %}
+      </div>
+    </div>
+    
+    <div class="col-md-9">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+        <div class="mx-auto mt-2">
+          <div class="alert alert-{{ category }} mb-1">
+            {{ message }}
+          </div>
+        </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>{{ title }}</h4>
+              <hr>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <form method="POST" autocomplete="off" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+
+                <div class="form-row">
+                  <!-- First Name -->
+                  <div class="col-md-4 mb-3">
+                    {{ form.first_name.label }}
+                    {% if form.first_name.errors %}
+                    {{ form.first_name(class="form-control is-invalid", placeholder="First Name") }}
+                    <div class="invalid-feedback">
+                      {% for error in form.first_name.errors %}
+                        <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.first_name(class="form-control", placeholder="First Name") }}
+                    {% endif %}                    
+                  </div>
+                  <!-- Last Name -->
+                  <div class="col-md-4 mb-3">
+                    {{ form.last_name.label }}
+                    {% if form.last_name.errors %}
+                    {{ form.last_name(class="form-control is-invalid", placeholder="First Name") }}
+                    <div class="invalid-feedback">
+                      {% for error in form.last_name.errors %}
+                        <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.last_name(class="form-control", placeholder="Last Name") }}
+                    {% endif %}                    
+                  </div>
+                  <!-- Username -->
+                  <div class="col-md-4 mb-3">
+                    {{ form.username.label }}
+                    {% if form.username.errors %}
+                    {{ form.username(class="form-control is-invalid", placeholder="First Name") }}
+                    <div class="invalid-feedback">
+                      {% for error in form.username.errors %}
+                        <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.username(class="form-control", placeholder="Username") }}
+                    {% endif %}                    
+                  </div>
+                </div>
+
+                <div class="form-row">
+                    <!-- Email -->
+                  <div class="col-md-6 mb-3">
+                    {{ form.email.label }}
+                    {% if form.email.errors %}
+                    {{ form.email(class="form-control is-invalid", placeholder="First Name") }}
+                    <div class="invalid-feedback">
+                      {% for error in form.email.errors %}
+                        <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.email(class="form-control", placeholder="Email") }}
+                    {% endif %}                    
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <!-- City -->
+                  <div class="col-md-5 mb-3">
+                    {{ form.city.label }}
+                    {% if form.city.errors %}
+                    {{ form.city(class="form-control is-invalid", placeholder="First Name") }}
+                    <div class="invalid-feedback">
+                      {% for error in form.city.errors %}
+                        <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.city(class="form-control", placeholder="City") }}
+                    {% endif %}                    
+                  </div>
+                  <!-- State -->
+                  <div class="col-md-4 mb-3">
+                    {{ form.state.label }}
+                    {% if form.state.errors %}
+                    {{ form.state(class="form-control is-invalid", placeholder="First Name") }}
+                    <div class="invalid-feedback">
+                      {% for error in form.state.errors %}
+                        <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.state(class="form-control", placeholder="State") }}
+                    {% endif %}                    
+                  </div>
+                  <!-- Zip Code -->
+                  <div class="col-md-3 mb-3">
+                    {{ form.zip_code.label }}
+                    {% if form.zip_code.errors %}
+                    {{ form.zip_code(class="form-control is-invalid", placeholder="First Name") }}
+                    <div class="invalid-feedback">
+                      {% for error in form.zip_code.errors %}
+                        <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.zip_code(class="form-control", placeholder="Zip Code") }}
+                    {% endif %}                    
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <!-- Profile Picture -->
+                  <div class="col-md-10">
+                    {{ form.picture.label() }}
+                    {{ form.picture(class="form-control-file") }}
+                    {% if form.picture.errors %}
+                    {% for error in form.picture.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                  </div>
+                  <!-- Submit -->
+                  <div class="col-md-2">
+                    {{ form.submit(class="float-right mt-3 btn btn-dark") }}
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
