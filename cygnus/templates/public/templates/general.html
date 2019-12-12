@@ -25,19 +25,38 @@
 			<div class="collapse navbar-collapse" id="navbar1">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item">
-						<a class="nav-link" href="/about">About</a>
+						<a class="nav-link" href="{{ url_for('about') }}">About</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/coursecatalog">Catalog</a>
+						<a class="nav-link" href="{{ url_for('coursecatalog') }}">Catalog</a>
 					</li>
+					<!-- Users can access their profile if they are logged in -->
+					{% if current_user.is_authenticated %}
 					<li class="nav-item">
-							<a class="nav-link" href="/profile">Profiles</a>
+							<a class="nav-link" href="{{ url_for('profile') }}">Profiles</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/login">Login/Register</a>
-					</li>
-					
+					{% endif %}
 				</ul>
+				<!-- Right Side Navbar -->
+				<!-- User is logged in -->
+				{% if current_user.is_authenticated %}
+				<ul class="navbar-nav mr-5 mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+					</li>
+				</ul>				
+				{% else %}
+				<!-- User is not logged in -->
+				<ul class="navbar-nav mr-5 mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('login') }}">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('register') }}">Register</a>
+					</li>
+				</ul>
+				{% endif %}
+
 				<form class="form-inline my-2 my-lg-0">
 					<input class="form-control mr-sm-2" type="search" placeholder="Search">
 					<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
