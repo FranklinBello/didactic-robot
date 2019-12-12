@@ -2,11 +2,11 @@ import os
 import secrets
 from PIL import Image
 
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, url_for, flash, request, redirect, abort
 
 from cygnus import app, db, bcrypt
-from cygnus.forms import RegistrationForm, LoginForm, EditProfileForm
-from cygnus.models import User
+from cygnus.forms import RegistrationForm, LoginForm, EditProfileForm, PostForm
+from cygnus.models import User, Post
 
 from flask_login import login_user, logout_user, current_user, login_required
 
@@ -55,7 +55,9 @@ def logout():
 @login_required
 def profile():
     image_file = url_for('static', filename='img/profile_pics/' + current_user.image_file)
-    return render_template('public/profile.html', title='Profile', image_file=image_file)
+    # posts = Post.query.filter_by(author=current_user).all()
+    posts = Post.query.all()
+    return render_template('public/profile.html', title='Profile', image_file=image_file, posts=posts)
 
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
@@ -98,6 +100,54 @@ def editprofile():
         form.state.data = current_user.state
         form.zip_code.data = current_user.zip_code
     return render_template('public/editprofile.html', title='Edit Profile', form=form)
+
+@app.route('/profile/new_post', methods=['GET', 'POST'])
+@login_required
+def new_post():
+    form = PostForm()
+    form.role.choices = [('1', 'Tutor'), ('2', 'Student')]
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, body=form.body.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('You created a new post!', 'success')
+        return redirect(url_for('profile'))
+    return render_template('public/createpost.html', title='Create Post', form=form)
+
+@app.route('/post/<int:post_id>')
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template('public/post.html', title=post.title, post=post)
+
+@app.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    form = PostForm()
+    form.role.choices = [('1', 'Tutor'), ('2', 'Student')]
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.body = form.body.data
+        db.session.commit()
+        flash('Your post has been updated!', 'success')
+        return redirect(url_for('post', post_id=post.id))
+    elif request.method == 'GET':
+        form.title.data = post.title
+        form.body.data = post.body
+    return render_template('public/createpost.html', title='Edit Post', post=post, form=form)
+
+@app.route('/post/<int:post_id>/delete', methods=['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    db.session.delete(post)
+    db.session.commit()
+    flash('Your post has been deleted!', 'success')
+    return redirect(url_for('profile'))
 
 @app.route('/coursecatalog', methods=['GET'])
 def coursecatalog():
