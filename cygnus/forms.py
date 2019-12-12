@@ -49,7 +49,7 @@ class EditProfileForm(FlaskForm):
     city     = StringField  ('City', validators=[Length(min=2, max=20)])
     state    = StringField  ('State', validators=[Length(min=2, max=20)])
     zip_code = StringField  ('Zip Code', validators=[Length(min=3, max=10)])
-    picture  = FileField    ('Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    picture  = FileField    ('Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit   = SubmitField  ('Update')
 
     def validate_username(self, username):
