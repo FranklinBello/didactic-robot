@@ -1,4 +1,9 @@
 body {
-    padding-top: 56px;
-  }
+  padding-top: 56px;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+}
   
