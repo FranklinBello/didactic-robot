@@ -7,6 +7,7 @@
     <div class="col-md-3 ">
       <div class="list-group ">
         <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
+        <a href="{{ url_for('new_post') }}" class="list-group-item list-group-item-action">Create a Post</a>
         {% if current_user.is_authenticated %}
         <a href="{{ url_for('editprofile') }}" class="list-group-item list-group-item-action">Edit Profile</a>
         {% endif %}
@@ -14,6 +15,7 @@
     </div>
     
     <div class="col-md-9">
+
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
       {% for category, message in messages %}
@@ -25,27 +27,52 @@
       {% endfor %}
       {% endif %}
       {% endwith %}
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-3">
-              <img style="height: 125px; width: 125px" class="rounded ml-4" src="{{ image_file }}" alt="Profile Picture">
-            </div>
-            <div class="col-md-9">
-              {% if current_user.first_name and current_user.last_name %}
-              <h4>{{ current_user.username }} - {{ current_user.first_name }} {{ current_user.last_name }}</h4>
-              {% else %}
-              <h4>{{ current_user.username }}</h4>
-              {% endif %}
-              <hr>
-              <p><span class="font-weight-bold">Email:</span> {{ current_user.email }}</p>
-              {% if current_user.city and current_user.state and current_user.zip_code %}
-              <p><span class="font-weight-bold">Location:</span> {{ current_user.city }}, {{ current_user.state }}, {{ current_user.zip_code }}</p>
-              {% endif %}
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <img style="height: 125px; width: 125px" class="rounded ml-4" src="{{ image_file }}" alt="Profile Picture">
+                </div>
+                <div class="col-md-9">
+                  {% if current_user.first_name and current_user.last_name %}
+                  <h4>{{ current_user.username }} - {{ current_user.first_name }} {{ current_user.last_name }}</h4>
+                  {% else %}
+                  <h4>{{ current_user.username }}</h4>
+                  {% endif %}
+                  <hr>
+                  <p><span class="font-weight-bold">Email:</span> {{ current_user.email }}</p>
+                  {% if current_user.city and current_user.state and current_user.zip_code %}
+                  <p><span class="font-weight-bold">Location:</span> {{ current_user.city }}, {{ current_user.state }}, {{ current_user.zip_code }}</p>
+                  {% endif %}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      
+      {% for post in posts %}
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card mb-3">
+            <div class="card-header">
+              <small>
+                Posted on {{ post.date_created.strftime('%Y-%m-%d') }} by {{ post.author.username }}
+              </small>
+            </div>
+            <div class="card-body">
+              <h4><a href="{{ url_for('post', post_id=post.id)}}">{{ post.title }}</a></h4>
+              <hr>
+              <p>{{ post.body }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
     </div>
   </div>
 </div>

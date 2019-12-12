@@ -1,0 +1,99 @@
+{% extends "public/templates/general.html" %}
+
+{% block main %}
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-3 ">
+      <div class="list-group ">
+        <a href="{{ url_for('profile') }}" class="list-group-item list-group-item-action">Dashboard</a>
+        <a href="#" class="list-group-item list-group-item-action active">{{ title }}</a>
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('editprofile') }}" class="list-group-item list-group-item-action">Edit Profile</a>
+        {% endif %}
+      </div>
+    </div>
+    
+    <div class="col-md-9">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+        <div class="mx-auto mt-2">
+          <div class="alert alert-{{ category }} mb-1">
+            {{ message }}
+          </div>
+        </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>{{ title }}</h4>
+              <hr>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <form method="POST" autocomplete="off" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+
+                <div class="form-row">
+                  <!-- First Name -->
+                  <div class="col-md-9 mb-3">
+                    {{ form.title.label }}
+                    {% if form.title.errors %}
+                    {{ form.title(class="form-control is-invalid", placeholder="Title") }}
+                    <div class="invalid-feedback">
+                      {% for error in form.title.errors %}
+                        <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.title(class="form-control", placeholder="Title") }}
+                    {% endif %}                    
+                  </div>
+                  <!-- Role -->
+                  <div class="col-md-3 mb-3">
+                    {{ form.role.label }}
+                    {% if form.role.errors %}
+                    {{ form.title(class="form-control") }}
+                    <div class="invalid-feedback">
+                      {% for error in form.role.errors %}
+                        <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.role(class="form-control") }}
+                    {% endif %}                    
+                  </div>
+                </div>
+
+                <!-- Body -->
+                <div class="form-group">
+                  {{ form.body.label }}
+                  {% if form.body.errors %}
+                  {{ form.body(class="form-control is-invalid", rows="5", placeholder="Body") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.body.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.body(class="form-control", rows="5") }}
+                  {% endif %}                    
+                </div>
+
+                <!-- Post -->
+                <div class="form-group">
+                  {{ form.submit(class="float-right mt-3 btn btn-dark") }}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

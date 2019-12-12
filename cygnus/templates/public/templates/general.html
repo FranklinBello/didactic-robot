@@ -30,17 +30,18 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{ url_for('coursecatalog') }}">Catalog</a>
 					</li>
-					<!-- Users can access their profile if they are logged in -->
 					{% if current_user.is_authenticated %}
-					<li class="nav-item">
-							<a class="nav-link" href="{{ url_for('profile') }}">Profiles</a>
-					</li>
+					
 					{% endif %}
 				</ul>
 				<!-- Right Side Navbar -->
-				<!-- User is logged in -->
 				{% if current_user.is_authenticated %}
 				<ul class="navbar-nav mr-5 mt-2 mt-lg-0">
+					<!-- Users can access their profile if they are logged in -->
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('profile') }}">My Profile</a>
+					</li>
+					<!-- User can logout -->
 					<li class="nav-item">
 						<a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
 					</li>
