@@ -160,3 +160,8 @@ def about():
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('public/404.html', title='Not Found')
+
+@app.errorhandler(403)
+def forbidden_page(error):
+    return render_template('public/403.html', title='Forbidden Page')
+
